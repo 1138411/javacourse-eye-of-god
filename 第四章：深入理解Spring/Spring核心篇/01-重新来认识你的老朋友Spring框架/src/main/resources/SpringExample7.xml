@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+    <bean class="com.jimisun.spring.example7.BeautifulGirl" id="beautifulGirl">
+        <constructor-arg ref="action"/>
+    </bean>
+
+    <bean class="com.jimisun.spring.example7.EatAction" id="action"></bean>
+
+    <!--声明Bean-->
+    <bean class="com.jimisun.spring.example7.Parent" id="parent"></bean>
+
+    <!--声明切面-->
+    <aop:config>
+        <aop:aspect ref="parent">
+            <aop:pointcut id="girlAction" expression="execution(* com.jimisun.spring.example7.Action.*(..))"/>
+            <aop:before pointcut-ref="girlAction" method="check"/>
+        </aop:aspect>
+    </aop:config>
+
+
+</beans>
