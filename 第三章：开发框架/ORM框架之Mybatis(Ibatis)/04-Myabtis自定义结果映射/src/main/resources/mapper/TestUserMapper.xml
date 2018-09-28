@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jimisun.dao.TestUserMapper">
+
+    <resultMap id="MyDto" type="com.jimisun.domain.dto.MyDto">
+        <result property="myid" column="id"></result>
+        <result property="myusername" column="username"></result>
+    </resultMap>
+
+    <!--注意这里的resultMap是自定义dto-->
+    <select id="selectOne" parameterType="java.lang.Integer" resultMap="MyDto">
+      SELECT * from user where id = #{id}
+   </select>
+
+
+</mapper>
